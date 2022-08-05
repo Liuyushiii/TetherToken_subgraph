@@ -1,0 +1,9 @@
+type Token @entity {
+  id: ID!
+  symbol: String!
+}
+
+type Transfer @entity {
+  id: ID!
+  value: String!
+}

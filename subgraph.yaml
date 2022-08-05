@@ -1,0 +1,28 @@
+specVersion: 0.0.4
+description: TetherToken for Ethereum
+repository: https://etherscan.io/address/0xdac17f958d2ee523a2206206994597c13d831ec7#code
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: TetherToken
+    network: mainnet
+    source:
+      address: '0x5630081330A00a85833Af27D1e7bD015fe2FF05b'
+      abi: TetherToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Token
+        - Transfer
+      abis:
+        - name: TetherToken
+          file: ./abis/TetherToken.json
+      eventHandlers:
+        - event: NewTetherToken(uint256,string,string,uint256)
+          handler: handleNewTetherToken
+        - event: TetherTokenTransfer(address,uint256)
+          handler: handleTransfer
+      file: ./src/mapping.ts
